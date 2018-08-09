@@ -1,16 +1,16 @@
 module Main exposing (..)
 
-import Button
-import Card
+import Demo.Button
+import Demo.Card
+import Demo.Checkbox
+import Demo.Chips
+import Demo.FloatingActionButton
 import Html exposing (Html, text)
 import Html.Attributes as Html
 import Html.Events as Html
 import Mwc.Button as Mwc exposing (button, buttonConfig)
 import Mwc.Card as Card exposing (card, cardConfig)
-import Mwc.Checkbox as Mwc exposing (checkbox, checkboxConfig)
-import Mwc.Chips as Mwc exposing (chip, chipConfig, chipSet, chipSetConfig)
 import Mwc.Dialog as Mwc exposing (dialog, dialogConfig)
-import Mwc.Fab as Mwc exposing (fab, fabConfig)
 import Mwc.FormField as Mwc exposing (formField, formFieldConfig)
 import Mwc.Icon as Mwc exposing (icon, iconConfig)
 import Mwc.IconToggle as Mwc exposing (iconToggle, iconToggleConfig)
@@ -25,11 +25,13 @@ main =
         [ Html.node "style"
             [ Html.type_ "text/css" ]
             [ text style
-            , text Button.style
-            , text Card.style
+            , text Demo.Button.style
+            , text Demo.Card.style
             ]
-        , Button.view
-        , Card.view
+        , Demo.Button.view
+        , Demo.Card.view
+        , Demo.Checkbox.view
+        , Demo.FloatingActionButton.view
         , Html.hr [] []
         , Html.h2 [] [ text "Material Web Components" ]
         , Html.h3 [] [ text "Button" ]
@@ -43,22 +45,6 @@ main =
                 }
                 "Hi there"
             , button buttonConfig "I'm a button too"
-            ]
-        , Html.h3 [] [ text "Fab" ]
-        , Html.div
-            [ Html.class "group"
-            ]
-            [ fab fabConfig "map"
-            , fab
-                { fabConfig
-                    | additionalAttributes = [ Html.class "light" ]
-                }
-                "explore"
-            , fab
-                { fabConfig
-                    | additionalAttributes = [ Html.class "special" ]
-                }
-                "code"
             ]
         , Html.h3 [] [ text "Icon" ]
         , Html.div
@@ -75,23 +61,6 @@ main =
                     | additionalAttributes = [ Html.class "special-icon" ]
                 }
                 "code"
-            ]
-        , Html.h3 [] [ text "Checkbox" ]
-        , Html.div
-            [ Html.class "group"
-            ]
-            [ checkbox checkboxConfig ""
-            , checkbox
-                { checkboxConfig
-                    | checked = True
-                }
-                ""
-            , checkbox
-                { checkboxConfig
-                    | indeterminate = True
-                    , additionalAttributes = [ Html.class "special" ]
-                }
-                ""
             ]
         , Html.h3 [] [ text "Radio" ]
         , Html.div
