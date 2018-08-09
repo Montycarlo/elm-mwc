@@ -10,8 +10,6 @@ Elm bindings to
 
 ```sh
 $ git clone --recursive github.com:aforemny/elm-mwc.git
-$ npm i
-$ make
 ```
 
 
@@ -28,6 +26,7 @@ $ open http://localhost:8081/page.html
 ### Other Linux
 
 ```sh
+$ npm i
 $ make
 $ (cd material-components-web-components && npm run dev)
 $ ^C-c # terminate it
