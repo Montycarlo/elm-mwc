@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Demo.Button as Button
 import Demo.Card as Card
+import Demo.Typography
 import Html exposing (Html, text)
 import Html.Attributes as Html
 import Html.Events as Html
@@ -155,6 +156,7 @@ main =
                 ]
             ]
         , Html.h3 [] [ text "Card" ]
+        , Demo.Typography.view
         ]
 
 
