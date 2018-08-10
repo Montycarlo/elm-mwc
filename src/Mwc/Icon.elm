@@ -1,7 +1,6 @@
 module Mwc.Icon exposing (..)
 
 import Html exposing (Html, text)
-import Html.Attributes as Html
 
 
 type alias Config msg =
@@ -23,4 +22,4 @@ icon config_ icon =
         config =
             { config_ | icon = icon }
     in
-    Html.node "mwc-icon" config.additionalAttributes [ text icon ]
+        Html.node "mwc-icon" config.additionalAttributes [ text icon ]
