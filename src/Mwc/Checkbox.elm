@@ -1,10 +1,10 @@
-module Mwc.Checkbox exposing (..)
+module Mwc.Checkbox exposing (CheckboxConfig, checkbox, checkboxConfig)
 
-import Html.Attributes as Html
 import Html exposing (Html, text)
+import Html.Attributes as Html
 
 
-type alias Config msg =
+type alias CheckboxConfig msg =
     { checked : Bool
     , indeterminate : Bool
     , disabled : Bool
@@ -13,7 +13,7 @@ type alias Config msg =
     }
 
 
-checkboxConfig : Config msg
+checkboxConfig : CheckboxConfig msg
 checkboxConfig =
     { checked = False
     , indeterminate = False
@@ -23,12 +23,9 @@ checkboxConfig =
     }
 
 
-checkbox : Config msg -> String -> Html msg
-checkbox config_ value =
+checkbox : CheckboxConfig msg -> Html msg
+checkbox config =
     let
-        config =
-            { config_ | value = value }
-
         bool v =
             if v then
                 Just ""

@@ -4,7 +4,7 @@
   "description": "[Demo](https://aforemny.github.io/elm-mwc)",
   "main": "demo.js",
   "scripts": {
-    "dev": "polyserve --npm --module-resolution=node -p 8080"
+    "dev": "polyserve --npm --module-resolution=node -p 8080 -H 0.0.0.0"
   },
   "repository": {
     "type": "git",
