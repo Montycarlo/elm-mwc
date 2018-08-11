@@ -56,7 +56,7 @@ style : String
 style =
     """
     .color {
-      color: tomato !important;
+      --mdc-theme-text-primary-on-light: tomato;
     }
     """
 
