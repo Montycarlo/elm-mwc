@@ -5,6 +5,7 @@ import Demo.Card
 import Demo.Checkbox
 import Demo.Chips
 import Demo.Fab
+import Demo.Icon
 import Demo.Snackbar
 import Demo.Textfield
 import Html exposing (Html, text)
@@ -45,6 +46,7 @@ type Msg
     | CheckboxMsg ()
     | FabMsg ()
     | CardMsg ()
+    | IconMsg ()
     | SnackbarMsg Demo.Snackbar.Msg
     | TextfieldMsg Demo.Textfield.Msg
 
@@ -58,6 +60,9 @@ update msg model =
             ( model, Cmd.none )
 
         FabMsg _ ->
+            ( model, Cmd.none )
+
+        IconMsg _ ->
             ( model, Cmd.none )
 
         CardMsg _ ->
@@ -97,12 +102,14 @@ view model =
             , text Demo.Button.style
             , text Demo.Card.style
             , text Demo.Snackbar.style
+            , text Demo.Icon.style
             ]
         , Html.div []
             [ Html.map ButtonMsg Demo.Button.view
             , Html.map CheckboxMsg Demo.Checkbox.view
             , Html.map FabMsg Demo.Fab.view
             , Html.map CardMsg Demo.Card.view
+            , Html.map IconMsg Demo.Icon.view
             , Html.map TextfieldMsg (Demo.Textfield.view model.textfield)
             ]
         , Html.hr [] []
@@ -118,22 +125,6 @@ view model =
                 }
                 "Hi there"
             , button buttonConfig "I'm a button too"
-            ]
-        , Html.h3 [] [ text "Icon" ]
-        , Html.div
-            [ Html.Attributes.class "group"
-            ]
-            [ icon iconConfig "map"
-            , icon
-                { iconConfig
-                    | additionalAttributes = [ Html.Attributes.class "light-icon" ]
-                }
-                "explore"
-            , icon
-                { iconConfig
-                    | additionalAttributes = [ Html.Attributes.class "special-icon" ]
-                }
-                "code"
             ]
         , Html.h3 [] [ text "Radio" ]
         , Html.div
@@ -274,4 +265,10 @@ body {
   .demo-group > *, .demo-group-spaced > * {
     margin: 0 8px;
   }
+
+  .color-size {
+    color: tomato;
+    --mdc-icon-size: 4em;
+  }
+
   """
