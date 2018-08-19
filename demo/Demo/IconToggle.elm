@@ -6,10 +6,13 @@ import Html.Events as Html
 import Mwc.IconToggle as Mwc exposing (iconToggle, iconToggleConfig)
 
 
-<<<<<<< HEAD
 type Msg
     = Toggle1Clicked
     | Toggle2Clicked
+    | ToggleDisabledClicked
+    | ToggleColor1Clicked
+    | ToggleColor2Clicked
+
 
 type alias Model =
     { icon1 : Bool
@@ -27,14 +30,6 @@ defaultModel =
     , iconColor1 = False
     , iconColor2 = False
     }
-
-
-type Msg
-    = Toggle1Clicked
-    | Toggle2Clicked
-    | ToggleDisabledClicked
-    | ToggleColor1Clicked
-    | ToggleColor2Clicked
 
 
 init msg model =
