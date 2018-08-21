@@ -3,4 +3,5 @@ demo.css
 elm-stuff
 gh-pages
 node_modules
+bundle.js
 *.orig
