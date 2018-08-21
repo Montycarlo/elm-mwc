@@ -55,11 +55,15 @@ defaultModel =
     , textfield = Demo.Textfield.Model
     , iconToggle = Demo.IconToggle.defaultModel
     , linearProgress = Demo.LinearProgress.defaultModel
+<<<<<<< HEAD
+    , switch = Demo.Switch.defaultModel
+=======
     , radio = Demo.Radio.defaultModel
     , switch = Demo.Switch.defaultModel
     , checkbox = Demo.Checkbox.defaultModel
     , fab = Demo.Fab.defaultModel
     , icon = Demo.Icon.defaultModel
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
     }
 
 
@@ -74,7 +78,10 @@ type Msg
     | TextfieldMsg Demo.Textfield.Msg
     | LinearProgressMsg Demo.LinearProgress.Msg
     | SwitchMsg Demo.Switch.Msg
+<<<<<<< HEAD
+=======
     | RadioMsg Demo.Radio.Msg
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
 
 
 subscriptions : Model -> Sub Msg
@@ -140,8 +147,17 @@ update msg model =
 
         SwitchMsg switchMsg ->
             Demo.Switch.update switchMsg model.switch
+<<<<<<< HEAD
+                |> Tuple.mapFirst
+                    (\switch ->
+                        { model | switch = switch }
+                    )
+                |> Tuple.mapSecond (Cmd.map SwitchMsg)
+
+=======
                 |> Tuple.mapFirst (\switch -> { model | switch = switch })
                 |> Tuple.mapSecond (Cmd.map SwitchMsg)
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
 
         RadioMsg radioMsg ->
             Demo.Radio.update radioMsg model.radio
@@ -170,7 +186,11 @@ view model =
             , Html.map IconMsg (Demo.Icon.view model.icon)
             , Html.map IconToggleMsg (Demo.IconToggle.view model.iconToggle)
             , Html.map LinearProgressMsg (Demo.LinearProgress.view model.linearProgress)
+<<<<<<< HEAD
+            , Demo.Radio.view
+=======
             , Html.map RadioMsg (Demo.Radio.view model.radio)
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
             , Html.map TextfieldMsg (Demo.Textfield.view model.textfield)
             , Html.map SwitchMsg (Demo.Switch.view model.switch)
             ]

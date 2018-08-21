@@ -1,0 +1,38 @@
+module Demo.Checkbox exposing (..)
+
+import Html exposing (Html, text)
+import Html.Attributes as Html
+import Mwc.Checkbox as Mwc exposing (checkbox, checkboxConfig)
+
+
+view =
+    Html.node "main"
+        []
+        [ Html.h3 [] [ text "Checkbox" ]
+<<<<<<< HEAD
+        , checkbox checkboxConfig ""
+        , checkbox { checkboxConfig | checked = True } ""
+=======
+        , checkbox checkboxConfig
+        , checkbox { checkboxConfig | checked = True }
+>>>>>>> 6c98e166a2d0e5d269a0773d23538cfc0b679da7
+        , checkbox
+            { checkboxConfig
+                | indeterminate = True
+            }
+<<<<<<< HEAD
+            ""
+=======
+>>>>>>> 6c98e166a2d0e5d269a0773d23538cfc0b679da7
+        , checkbox
+            { checkboxConfig
+                | indeterminate = True
+                , additionalAttributes = [ Html.class "special" ]
+            }
+<<<<<<< HEAD
+            ""
+        , checkbox { checkboxConfig | disabled = True } ""
+=======
+        , checkbox { checkboxConfig | disabled = True }
+>>>>>>> 6c98e166a2d0e5d269a0773d23538cfc0b679da7
+        ]

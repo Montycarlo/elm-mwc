@@ -1,0 +1,29 @@
+module Mwc.Icon exposing (..)
+
+import Html exposing (Html, text)
+
+
+type alias IconConfig msg =
+    { additionalAttributes : List (Html.Attribute msg)
+    }
+
+
+iconConfig : IconConfig msg
+iconConfig =
+    { additionalAttributes = []
+    }
+
+
+<<<<<<< HEAD
+icon : Config msg -> String -> Html msg
+icon config_ icon =
+    let
+        config =
+            { config_ | icon = icon }
+    in
+        Html.node "mwc-icon" config.additionalAttributes [ text icon ]
+=======
+icon : IconConfig msg -> String -> Html msg
+icon config icon =
+    Html.node "mwc-icon" config.additionalAttributes [ text icon ]
+>>>>>>> fc825a92df24305f150cfb33ea134e0cf20610b7

@@ -1,8 +1,13 @@
 module Mwc.Switch exposing (..)
 
 import Html exposing (Html, text)
+<<<<<<< HEAD
+import Html.Attributes as Html
+import Html.Events as Html
+=======
 import Html.Events as Html
 import Mwc.Attributes exposing (boolProp)
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
 
 
 type alias SwitchConfig msg =
@@ -24,6 +29,27 @@ switchConfig =
 
 switch : SwitchConfig msg -> Html msg
 switch config =
+<<<<<<< HEAD
+    let
+        bool v =
+            if v then
+                Just ""
+            else
+                Nothing
+    in
+        Html.node "mwc-switch"
+            (List.filterMap identity
+                [ Maybe.map (Html.attribute "checked") (bool config.checked)
+                , Maybe.map (Html.attribute "disabled") (bool config.disabled)
+                , if config.disabled then
+                    Nothing
+                  else
+                    Maybe.map Html.onClick config.onToggle
+                ]
+                ++ config.additionalAttributes
+            )
+            []
+=======
     Html.node "mwc-switch"
         (List.filterMap identity
             [ Just (boolProp "checked" config.checked)
@@ -36,3 +62,4 @@ switch config =
             ++ config.additionalAttributes
         )
         []
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7

@@ -17,13 +17,17 @@ type alias Model =
     }
 
 
+<<<<<<< HEAD
+=======
 defaultModel : Model
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
 defaultModel =
     { toggle1 = False
     , toggle2 = True
     }
 
 
+<<<<<<< HEAD
 init msg model =
     ( model, Cmd.none )
 
@@ -32,7 +36,9 @@ subscriptions model =
     Sub.none
 
 
+=======
 update : Msg -> Model -> ( Model, Cmd Msg )
+>>>>>>> b8de4867a516a7cb0b20a6bf43d55810af1ab4d7
 update msg model =
     case msg of
         ToggleSwitch1 ->

@@ -4,6 +4,9 @@ import Html exposing (Html, text)
 import Html.Attributes as Html
 import Html.Events as Html
 import Mwc.Button as Button exposing (button, buttonConfig)
+<<<<<<< HEAD
+import Mwc.LinearProgress exposing (linearProgress, linearProgressConfig)
+=======
 import Mwc.LinearProgress as LinearProgress exposing (linearProgress, linearProgressConfig)
 
 
@@ -12,29 +15,54 @@ type alias Model =
     }
 
 
-defaultModel : Model
 defaultModel =
     { closed = False
     }
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
 
 
 type Msg
     = ToggleButtonClicked
 
 
-update : Msg -> Model -> ( Model, Cmd Msg )
+init msg model =
+    ( model, Cmd.none )
+
+
+subscriptions model =
+    Sub.none
+
+
 update msg model =
     case msg of
         ToggleButtonClicked ->
             ( { model | closed = not model.closed }, Cmd.none )
 
 
+<<<<<<< HEAD
+type alias Model =
+    { closed : Bool
+    }
+
+
+defaultModel =
+    { closed = False
+    }
+
+
+=======
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
 style : String
 style =
     """
     mwc-linear-progress {
       width: 50%;
+<<<<<<< HEAD
+      margin: auto !important;
+      --mdc-theme-secondary: #e6e6e6;
+=======
       margin: auto;
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
     }
 
     .demo-progress-bar {
@@ -51,7 +79,11 @@ view model =
         []
         [ button
             { buttonConfig
+<<<<<<< HEAD
+                | raised = True
+=======
                 | variant = Button.Raised
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
                 , additionalAttributes = [ Html.onClick ToggleButtonClicked ]
             }
             "Toggle"
@@ -76,7 +108,13 @@ view model =
             []
             [ linearProgress
                 { linearProgressConfig
+<<<<<<< HEAD
+                    | determinate = True
+                    , progress = 0.5
+                    , buffer = 1
+=======
                     | variant = LinearProgress.Buffered 0.5 1
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
                 }
             ]
         , Html.h3 [] [ text "linear-progress: determinate buffer" ]
@@ -84,7 +122,13 @@ view model =
             []
             [ linearProgress
                 { linearProgressConfig
+<<<<<<< HEAD
+                    | determinate = True
+                    , progress = 0.3
+                    , buffer = 0.7
+=======
                     | variant = LinearProgress.Buffered 0.3 0.7
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
                     , additionalAttributes = [ Html.class "demo-progress-bar" ]
                 }
             ]
@@ -93,7 +137,13 @@ view model =
             []
             [ linearProgress
                 { linearProgressConfig
+<<<<<<< HEAD
+                    | determinate = True
+                    , progress = 0.2
+                    , buffer = 0.6
+=======
                     | variant = LinearProgress.Buffered 0.2 0.6
+>>>>>>> 6d6756536b20ae8d53a5ee881f372ebc359f7994
                     , reverse = True
                 }
             ]
