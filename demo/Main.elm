@@ -6,12 +6,16 @@ import Demo.Checkbox
 import Demo.Chips
 import Demo.Fab
 import Demo.Icon
+import Demo.IconToggle
+import Demo.LinearProgress
+import Demo.Radio
 import Demo.Snackbar
+import Demo.Switch
 import Demo.Textfield
 import Html exposing (Html, text)
 import Html.Attributes
 import Html.Events as Html
-import Mwc.Button exposing (button, buttonConfig)
+import Mwc.Button as Button exposing (button, buttonConfig)
 import Mwc.Card as Card exposing (card, cardConfig)
 import Mwc.Checkbox exposing (checkbox, checkboxConfig)
 import Mwc.Chips exposing (chip, chipConfig, chipSet, chipSetConfig)
@@ -19,18 +23,13 @@ import Mwc.Dialog exposing (dialog, dialogConfig)
 import Mwc.Fab exposing (fab, fabConfig)
 import Mwc.FormField exposing (formField, formFieldConfig)
 import Mwc.Icon exposing (icon, iconConfig)
-import Mwc.IconToggle exposing (iconToggle, iconToggleConfig)
-import Mwc.LinearProgress exposing (linearProgress, linearProgressConfig)
 import Mwc.List exposing (item, itemConfig, itemSeparator, itemSeparatorConfig)
 import Mwc.Menu exposing (menu, menuConfig)
-import Mwc.Radio exposing (radio, radioConfig)
 import Mwc.Ripple exposing (ripple, rippleConfig)
 import Mwc.Select exposing (select, selectConfig)
 import Mwc.Slider exposing (slider, sliderConfig)
 import Mwc.Snackbar exposing (snackbar, snackbarConfig)
-import Mwc.Switch exposing (switch, switchConfig)
 import Mwc.Tabs exposing (tab, tabBar, tabBarConfig, tabConfig)
-import Mwc.Textfield exposing (textfield, textfieldConfig)
 
 
 defaultModel =
@@ -38,6 +37,9 @@ defaultModel =
     , card = ()
     , snackbar = Demo.Snackbar.Model
     , textfield = Demo.Textfield.Model
+    , iconToggle = Demo.IconToggle.defaultModel
+    , linearProgress = Demo.LinearProgress.defaultModel
+    , switch = Demo.Switch.defaultModel
     }
 
 
@@ -47,8 +49,11 @@ type Msg
     | FabMsg ()
     | CardMsg ()
     | IconMsg ()
+    | IconToggleMsg Demo.IconToggle.Msg
     | SnackbarMsg Demo.Snackbar.Msg
     | TextfieldMsg Demo.Textfield.Msg
+    | LinearProgressMsg Demo.LinearProgress.Msg
+    | SwitchMsg Demo.Switch.Msg
 
 
 update msg model =
@@ -64,6 +69,12 @@ update msg model =
 
         IconMsg _ ->
             ( model, Cmd.none )
+
+        IconToggleMsg toggleMsg ->
+            Demo.IconToggle.update toggleMsg model.iconToggle
+                |> Tuple.mapFirst
+                    (\iconToggle -> { model | iconToggle = iconToggle })
+                |> Tuple.mapSecond (Cmd.map IconToggleMsg)
 
         CardMsg _ ->
             ( model, Cmd.none )
@@ -84,6 +95,22 @@ update msg model =
                     )
                 |> Tuple.mapSecond (Cmd.map TextfieldMsg)
 
+        LinearProgressMsg linearProgressMsg ->
+            Demo.LinearProgress.update linearProgressMsg model.linearProgress
+                |> Tuple.mapFirst
+                    (\linearProgress ->
+                        { model | linearProgress = linearProgress }
+                    )
+                |> Tuple.mapSecond (Cmd.map LinearProgressMsg)
+
+        SwitchMsg switchMsg ->
+            Demo.Switch.update switchMsg model.switch
+                |> Tuple.mapFirst
+                    (\switch ->
+                        { model | switch = switch }
+                    )
+                |> Tuple.mapSecond (Cmd.map SwitchMsg)
+
 
 subscriptions model =
     Sub.none
@@ -103,6 +130,8 @@ view model =
             , text Demo.Card.style
             , text Demo.Snackbar.style
             , text Demo.Icon.style
+            , text Demo.IconToggle.style
+            , text Demo.LinearProgress.style
             ]
         , Html.div []
             [ Html.map ButtonMsg Demo.Button.view
@@ -110,57 +139,14 @@ view model =
             , Html.map FabMsg Demo.Fab.view
             , Html.map CardMsg Demo.Card.view
             , Html.map IconMsg Demo.Icon.view
+            , Html.map IconToggleMsg (Demo.IconToggle.view model.iconToggle)
+            , Html.map LinearProgressMsg (Demo.LinearProgress.view model.linearProgress)
+            , Demo.Radio.view
             , Html.map TextfieldMsg (Demo.Textfield.view model.textfield)
+            , Html.map SwitchMsg (Demo.Switch.view model.switch)
             ]
         , Html.hr [] []
         , Html.h2 [] [ text "Material Web Components" ]
-        , Html.h3 [] [ text "Button" ]
-        , Html.div
-            [ Html.Attributes.class "group"
-            ]
-            [ button
-                { buttonConfig
-                    | raised = True
-                    , icon = "map"
-                }
-                "Hi there"
-            , button buttonConfig "I'm a button too"
-            ]
-        , Html.h3 [] [ text "Radio" ]
-        , Html.div
-            [ Html.Attributes.class "group"
-            ]
-            [ radio radioConfig
-            , radio radioConfig
-            , radio
-                { radioConfig
-                    | checked = True
-                    , additionalAttributes = [ Html.Attributes.class "special" ]
-                }
-            ]
-        , Html.div
-            [ Html.Attributes.class "group"
-            ]
-            [ radio
-                { radioConfig
-                    | name = "1"
-                    , checked = True
-                    , additionalAttributes = [ Html.Attributes.class "special" ]
-                }
-            , radio { radioConfig | name = "1" }
-            , radio { radioConfig | name = "1" }
-            ]
-        , Html.h3 [] [ text "Switch" ]
-        , Html.div
-            [ Html.Attributes.class "group"
-            ]
-            [ switch switchConfig
-            , switch
-                { switchConfig
-                    | checked = True
-                    , additionalAttributes = [ Html.Attributes.class "special" ]
-                }
-            ]
         , Html.h3 [] [ text "Ripple" ]
         , Html.div
             [ Html.Attributes.class "group"
@@ -265,10 +251,4 @@ body {
   .demo-group > *, .demo-group-spaced > * {
     margin: 0 8px;
   }
-
-  .color-size {
-    color: tomato;
-    --mdc-icon-size: 4em;
-  }
-
   """
